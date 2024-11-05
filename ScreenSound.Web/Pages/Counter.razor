@@ -1,0 +1,32 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<input @bind="Nome" placeholder="Digite o nome" />
+<p>Nome inserido: @Nome</p>
+
+<input @oninput="AtualizarNome" placeholder="Digite seu nome" />
+<p>Nome inserido: @NomeDinamico</p>
+
+@code {
+    private int currentCount = 0;
+
+    private string Nome { get; set; } = string.Empty;
+    private string NomeDinamico { get; set; } = string.Empty;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private void AtualizarNome(ChangeEventArgs e)
+    {
+        NomeDinamico = e.Value?.ToString() ?? string.Empty;
+    }
+}
