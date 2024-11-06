@@ -1,4 +1,5 @@
-﻿using ScreenSound.API.Response;
+﻿using ScreenSound.API.Requests;
+using ScreenSound.API.Response;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -17,5 +18,10 @@ public class ArtistaAPI
     public async Task<ICollection<ArtistaResponse>?> GetArtistasAsync()
     {
         return await _httpClient.GetFromJsonAsync<ICollection<ArtistaResponse>?>("artistas");
+    }
+
+    public async Task AddArtistaAsync(ArtistaRequest request)
+    {
+        await _httpClient.PostAsJsonAsync("artistas", request);
     }
 }
